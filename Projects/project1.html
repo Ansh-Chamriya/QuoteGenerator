@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project-1</title>
+</head>
+<style>
+    *{
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+    }
+    body{
+        background: url(/bg1.jpg) no-repeat ;
+        background-size:100vw;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }
+    .main{
+        height: 100vh;
+        width: 100vw;
+        background-color: rgba(0, 0, 0, 0.51);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+    }
+    .head{
+        border:2px solid rgba(255, 255, 255, 0.814);
+        width: fit-content;
+        padding: 0.5rem 2rem;
+        color: rgba(255, 255, 255, 0.803);
+        border-radius: 5px;
+        background-color: black;
+        font-weight: 100;
+        font-size: 1.25rem;
+    }
+    .quote-container{
+        background-color: rgba(255, 255, 255, 0.814);
+        padding: 2rem 4rem;
+        border-radius: 5px;
+        height: auto;
+        width: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        justify-content: center;
+        align-items: center;
+        width:60vw;
+    }
+    .author{
+        color: rgba(128, 0, 0, 0.779);
+        font-weight: 400;
+        font-size: 1.5rem;
+    }
+    .submit{
+        background-color: black;
+        color: white;
+        border-radius: 5px;
+        padding: 0.5rem;
+        border: none;
+        width: fit-content;
+        cursor: pointer;
+    }
+    .quote{
+        text-align:center;
+    }
+</style>
+<body>
+    <div class="main">
+        <div class="head">Javascript Quote Generator</div>
+        <div class="quote-container">
+            <p class="quote">bore officia magni est ut mollitia repellendus, doloribus excepturi ipsam ab vero magnam dolorem adipisci praesentium? Nisi minima ab est, aut quae porro repudiandae vero quia?</p>
+            <p class="author">AUTHOR NAME</p>
+            <button class="submit">New Quote</button>
+        </div>
+    </div>
+</body>
+<script>
+    let click=document.querySelector('.submit')
+    let QuoteBox=document.querySelector('.quote')
+    let AuthorBox=document.querySelector('.author')
+    click.addEventListener('click',()=>{
+        var p=fetch('https://api.quotable.io/quotes/random')
+        p.then((response)=>{
+            return response.json();
+        }).then((value2)=> {
+            let {content,author}=value2[0]
+            console.log(value2)
+            QuoteBox.innerText=content
+            AuthorBox.innerText=author
+        })
+    })   
+</script>
+</html>
